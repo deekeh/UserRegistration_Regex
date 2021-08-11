@@ -19,7 +19,7 @@ const User = class {
     // check if all values pass the pattern test
     if (!this.nameRx.test(this.firstName)) errors.push('first name');
     if (!this.nameRx.test(this.lastName)) errors.push('last name');
-    // if (!this.emailRx.test(this.email)) errors.push('email');
+    if (!this.emailRx.test(this.email)) errors.push('email');
     // if (!this.phoneRx.test(this.phone)) errors.push('phone');
 
     if(errors.length!==0) throw new Error(`Error found in ${errors.join(', ')}`);
