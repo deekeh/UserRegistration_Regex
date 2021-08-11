@@ -10,25 +10,27 @@ const User = class {
     this.nameRx = /^([A-Z][a-zA-Z]{2,})$/;
     this.emailRx = /^([a-zA-Z0-9]+([.][a-zA-Z0-9]+)*)[@]([a-zA-Z0-9]+([.][a-zA-Z]{2,})+)$/;
     this.phoneRx = /^[9][1][ ][6789][0-9]{9}$/;
+    this.passwordLengthRx = /^.{8,}$/;
 
     this.checkUserDetails();
   }
 
   checkUserDetails() {
-    const errors = [];
+    const errors = new Set();
     // check if all values pass the pattern test
-    if (!this.nameRx.test(this.firstName)) errors.push('first name');
-    if (!this.nameRx.test(this.lastName)) errors.push('last name');
-    if (!this.emailRx.test(this.email)) errors.push('email');
-    if (!this.phoneRx.test(this.phone)) errors.push('phone');
+    if (!this.nameRx.test(this.firstName)) errors.add('first name');
+    if (!this.nameRx.test(this.lastName)) errors.add('last name');
+    if (!this.emailRx.test(this.email)) errors.add('email');
+    if (!this.phoneRx.test(this.phone)) errors.add('phone');
+    if (!this.passwordLengthRx.test(this.password)) errors.add('password length');
 
-    if(errors.length!==0) throw new Error(`Error found in ${errors.join(', ')}`);
+    if(errors.size!==0) throw new Error(`Error found in ${Array.from(errors).join(', ')}`);
     return console.log("Employee added successfully");
   }
 };
 
 try {
-  const dk = new User('Darshan', 'Khot', 'abc.d@email.com', '91 8984932939', 'User@123');
+  const dk = new User('Darshan', 'Khot', 'abc.d@email.com', '91 9984932939', 'User@123');
 }
 catch(err) {
   console.error(err.message);
