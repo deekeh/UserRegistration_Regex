@@ -10,7 +10,7 @@ const User = class {
     this.nameRx = /^([A-Z][a-zA-Z]{2,})$/;
     this.emailRx = /^([a-zA-Z0-9]+([.][a-zA-Z0-9]+)*)[@]([a-zA-Z0-9]+([.][a-zA-Z]{2,})+)$/;
     this.phoneRx = /^[9][1][ ][6789][0-9]{9}$/;
-    this.passwordLengthRx = /^(?=.*[A-Z])(?=.{8,})$/;
+    this.passwordLengthRx = /^(?=.*[A-Z])(?=.*[0-9])(?=.{8,})$/;
 
     this.checkUserDetails();
   }
